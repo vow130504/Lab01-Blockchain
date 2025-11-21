@@ -1,0 +1,7 @@
+// filepath: d:\Blockchain\Lab01-Blockchain\config\example_config.txt
+nodes=8
+seed=123
+heights=10
+drop_prob=0.05
+dup_prob=0.05
+max_delay=5
