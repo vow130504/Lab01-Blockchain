@@ -1,6 +1,6 @@
 import hashlib
 from dataclasses import dataclass
-from typing import Tuple
+from typing import Tuple, Any
 
 # Lightweight placeholder Ed25519 using pynacl if available; else mock (NOT secure).
 try:
@@ -29,12 +29,14 @@ def encode_kv_state(state: dict) -> bytes:
 def state_hash(state: dict) -> str:
     return sha256(encode_kv_state(state)).hex()
 
-def encode_fields(fields: Tuple[str, ...]) -> bytes:
-    # Simple deterministic encoding: count + each length-prefixed utf-8
+def encode_fields(fields: Tuple[Any, ...]) -> bytes:
     out = bytearray()
+    # Thêm độ dài danh sách
     out += len(fields).to_bytes(2, 'big')
     for f in fields:
-        b = f.encode()
+        # Tự động chuyển đổi int hoặc các kiểu khác thành string trước khi encode
+        val_str = str(f) 
+        b = val_str.encode('utf-8')
         out += len(b).to_bytes(4, 'big') + b
     return bytes(out)
 
