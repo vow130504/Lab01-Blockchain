@@ -1,51 +1,177 @@
-import random, heapq
-from typing import Any, Callable, List, Dict
+import random, heapq, json
+from typing import Any, List, Dict, Tuple
+from collections import defaultdict
+import copy
+
+class Message:
+    def __init__(self, msg_id, kind, height, body):
+        self.msg_id = msg_id
+        self.kind = kind
+        self.height = height
+        self.body = body  # dict
 
 class NetworkEvent:
-    def __init__(self, t, src, dst, etype, height, payload):
+    def __init__(self, t, src, dst, msg: Message):
         self.t = t
         self.src = src
         self.dst = dst
-        self.etype = etype
-        self.height = height
-        self.payload = payload
+        self.msg = msg
 
 class UnreliableNetwork:
-    def __init__(self, nodes: List[str], seed: int, drop_prob=0.05, dup_prob=0.05, max_delay=5):
+    def __init__(self, nodes: List[str], seed: int,
+                 drop_prob=0.05, dup_prob=0.05,
+                 delay_min=0, delay_max=5,
+                 rate_per_sec=50, bucket_cap=20,
+                 block_duration=10):
+
         self.nodes = nodes
         self.rng = random.Random(seed)
         self.drop_prob = drop_prob
         self.dup_prob = dup_prob
-        self.max_delay = max_delay
+        self.delay_min = delay_min
+        self.delay_max = delay_max
+
         self.time = 0
-        self.pq = []  # (deliver_time, event)
+        self.seq = 0
+        self.pq = []  # (t, seq, ev)
+
+        # header-before-body
+        self.accepted_headers = defaultdict(set)
+
+        # rate limiting
+        self.rate = rate_per_sec
+        self.capacity = bucket_cap
+        self.tokens = {(src, dst): self.capacity
+                       for src in nodes for dst in nodes if src != dst}
+        self.last_refill = 0
+
+        # temporary block for overactive peers
+        self.block_duration = block_duration
+        self.blocked_links: Dict[Tuple[str, str], int] = {}  # (src,dst) -> unblock_time
+
+        # deterministic log
         self.log: List[str] = []
 
-    def broadcast(self, src: str, height: int, payload: Any):
+    def log_event(self, **rec):
+        rec["time"] = self.time
+        self.log.append(json.dumps(rec, sort_keys=True))
+
+    def _refill_tokens(self):
+        delta = self.time - self.last_refill
+        if delta > 0:
+            for k in self.tokens:
+                self.tokens[k] = min(self.capacity,
+                                     self.tokens[k] + delta * (self.rate/1000))
+            self.last_refill = self.time
+
+    def broadcast(self, src: str, msg: Message):
         for dst in self.nodes:
             if dst == src: continue
-            self._send(src, dst, height, payload)
+            self.send(src, dst, msg)
 
-    def _send(self, src, dst, height, payload):
-        if self.rng.random() < self.drop_prob:
-            self.log.append(f"{self.time}|DROP|{src}->{dst}|h={height}")
+    def send(self, src, dst, msg: Message):
+        # check if blocked
+        unblock_time = self.blocked_links.get((src, dst), 0)
+        if self.time < unblock_time:
+            self.log_event(event="BLOCK_DROP", src=src, dst=dst,
+                           msg_id=msg.msg_id,
+                           unblock_time=unblock_time)
             return
-        delay = self.rng.randint(0, self.max_delay)
-        ev = NetworkEvent(self.time + delay, src, dst, "DELIVER", height, payload)
-        heapq.heappush(self.pq, (ev.t, ev))
-        self.log.append(f"{self.time}|SEND|{src}->{dst}|h={height}|d={delay}")
-        if self.rng.random() < self.dup_prob:
-            ev2 = NetworkEvent(self.time + delay + 1, src, dst, "DELIVER", height, payload)
-            heapq.heappush(self.pq, (ev2.t, ev2))
-            self.log.append(f"{self.time}|DUP|{src}->{dst}|h={height}")
 
-    def step(self, handler: Callable[[NetworkEvent], None]):
-        if not self.pq: 
+        # rate limit
+        self._refill_tokens()
+        key = (src, dst)
+        if self.tokens[key] < 1:
+            # block this peer temporarily
+            self.blocked_links[(src, dst)] = self.time + self.block_duration
+            self.log_event(event="BLOCK", src=src, dst=dst,
+                           msg_id=msg.msg_id,
+                           duration=self.block_duration)
+            return
+        self.tokens[key] -= 1
+
+        # drop
+        if self.rng.random() < self.drop_prob:
+            self.log_event(event="DROP", src=src, dst=dst, msg_id=msg.msg_id)
+            return
+
+        # schedule deliver
+        delay = self.rng.randint(self.delay_min, self.delay_max)
+        msg_clone = copy.deepcopy(msg)
+        ev = NetworkEvent(self.time + delay, src, dst, msg_clone)
+        self.seq += 1
+        heapq.heappush(self.pq, (ev.t, self.seq, ev))
+        self.log_event(event="SEND", src=src, dst=dst,
+                       msg_id=msg.msg_id, delay=delay)
+
+        # duplicate
+        if self.rng.random() < self.dup_prob:
+            ev2 = NetworkEvent(ev.t + 1, src, dst, copy.deepcopy(msg_clone))
+            self.seq += 1
+            heapq.heappush(self.pq, (ev2.t, self.seq, ev2))
+            self.log_event(event="DUP", src=src, dst=dst,
+                           msg_id=msg.msg_id)
+
+    def step(self, handler):
+        if not self.pq:
             self.time += 1
             return
-        t, ev = heapq.heappop(self.pq)
+
+        t, seq, ev = heapq.heappop(self.pq)
         self.time = t
-        handler(ev)
+
+        # HEADER → BODY enforcement
+        if ev.msg.kind == "BODY":
+            block_hash = ev.msg.body.get("block_hash")
+            if block_hash not in self.accepted_headers[ev.dst]:
+                # assign deadline if not yet
+                if not hasattr(ev, "deadline"):
+                    ev.deadline = self.time + 30  # MAX_WAIT_FOR_HEADER
+                # if deadline is expired -> DROP BODY
+                if self.time >= ev.deadline:
+                    self.log_event(event="BODY_DROP_EXPIRED_HEADER",
+                                   dst=ev.dst,
+                                   msg_id=ev.msg.msg_id,
+                                   block_hash=block_hash)
+                    return
+                # if not expired -> defer body
+                new_t = self.time + 2
+                ev2 = NetworkEvent(new_t, ev.src, ev.dst, copy.deepcopy(ev.msg))
+                ev2.deadline = ev.deadline
+
+                self.seq += 1
+                heapq.heappush(self.pq, (new_t, self.seq, ev2))
+
+                self.log_event(event="DEFER_BODY",
+                               dst=ev.dst,
+                               msg_id=ev.msg.msg_id,
+                               block_hash=block_hash,
+                               next_try=new_t,
+                               deadline=ev2.deadline)
+                return
+
+        # deliver
+        self.log_event(event="DELIVER", src=ev.src, dst=ev.dst,
+                       msg_id=ev.msg.msg_id, kind=ev.msg.kind,
+                       height=ev.msg.height)
+
+        # mark accepted header
+        if ev.msg.kind == "HEADER":
+            block_hash = ev.msg.body.get("block_hash")
+            if block_hash:
+                self.accepted_headers[ev.dst].add(block_hash)
+
+        # unblock peers if needed
+        to_unblock = []
+        for (s,d), unblock_time in self.blocked_links.items():
+            if self.time >= unblock_time:
+                to_unblock.append((s,d))
+        for k in to_unblock:
+            del self.blocked_links[k]
+            self.log_event(event="UNBLOCK", src=k[0], dst=k[1])
+
+        handler(ev.msg)
+        return True
 
     def idle(self):
         return not self.pq
