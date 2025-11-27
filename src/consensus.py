@@ -11,7 +11,8 @@ class VoteBook:
         self.finalized: Dict[int, str] = {}
 
     def majority(self) -> int:
-        return len(self.validators) // 2 + 1
+        # Strict majority
+        return (2 * len(self.validators)) // 3 + 1
 
     def add_vote(self, v: Vote) -> FinalizationResult:
         target = self.prevotes if v.phase == "PREVOTE" else self.precommits

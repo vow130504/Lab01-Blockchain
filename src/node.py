@@ -5,7 +5,7 @@ from .consensus import VoteBook, make_vote, verify_vote
 from .crypto import generate_keypair
 
 class Node:
-    def __init__(self, nid: str, validators: List[str], pk_map: Dict[str, bytes], vote_book: VoteBook):
+    def __init__(self, nid: str, validators: List[str], pk_map: Dict[str, bytes], vote_book: VoteBook, broadcast_cb=None):
         self.id = nid
         self.validators = validators
         self.keypair = generate_keypair()  # separate participant key (simplified)
@@ -13,6 +13,7 @@ class Node:
         self.vote_book = vote_book
         self.blocks_by_height: Dict[int, Block] = {}
         self.ledger: List[LedgerEntry] = []
+        self.broadcast_cb = broadcast_cb
 
     def receive_block(self, block: Block):
         if not verify_block(block, self.pk_map):
@@ -24,15 +25,34 @@ class Node:
             v = make_vote(self.id, h, block.hash, "PREVOTE", self.keypair.sk)
             self.handle_vote(v)
 
+    def receive_vote(self, v: Vote):
+        self.handle_vote(v)
+
     def handle_vote(self, v: Vote):
         if not verify_vote(v, self.pk_map): return
+        
+        # Check if we already have this vote to avoid infinite loops if we were to rebroadcast (we don't rebroadcast here but good practice)
+        # Actually, VoteBook handles duplicates, but we need to know if it's new to decide on actions.
+        # For now, just add it.
         res = self.vote_book.add_vote(v)
+        
+        # If it's our own vote, broadcast it
+        if v.validator == self.id and self.broadcast_cb:
+            self.broadcast_cb(v.height, ("VOTE", v))
+
         if v.phase == "PREVOTE" and self.id in self.validators:
             # Issue PRECOMMIT if majority prevote reached for this block
             prev_count = len(self.vote_book.prevotes[v.height][v.block_hash])
             if prev_count >= self.vote_book.majority():
-                pc = make_vote(self.id, v.height, v.block_hash, "PRECOMMIT", self.keypair.sk)
-                self.handle_vote(pc)
+                # Check if we already precommitted for this height/block
+                # (VoteBook doesn't explicitly track "my" votes separately, but we can check if we are in the set)
+                # However, make_vote is deterministic for same inputs.
+                # We need to ensure we don't spam precommits.
+                # Simple check: is my id in the precommits for this block?
+                if self.id not in self.vote_book.precommits[v.height][v.block_hash]:
+                    pc = make_vote(self.id, v.height, v.block_hash, "PRECOMMIT", self.keypair.sk)
+                    self.handle_vote(pc)
+
         if res.success:
             self.finalize(v.height, v.block_hash)
 

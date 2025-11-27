@@ -16,9 +16,20 @@ class Simulator:
             kp = generate_keypair()
             self.pk_map[vid] = kp.pk
             self.signers[vid] = kp.sk
-        self.vote_book = VoteBook(self.validator_ids)
-        self.nodes: Dict[str, Node] = {nid: Node(nid, self.validator_ids, self.pk_map, self.vote_book) for nid in self.node_ids}
+        # self.vote_book = VoteBook(self.validator_ids) # REMOVED: Shared vote book
         self.network = UnreliableNetwork(self.node_ids, seed)
+        
+        # Create nodes with individual VoteBooks and broadcast callback
+        self.nodes: Dict[str, Node] = {}
+        for nid in self.node_ids:
+            vb = VoteBook(self.validator_ids)
+            # Define a closure for broadcast that captures self.network
+            # We need to be careful with scope, but here it's fine as self.network is stable
+            def broadcast(h, p):
+                self.network.broadcast(nid, h, p)
+            
+            self.nodes[nid] = Node(nid, self.validator_ids, self.pk_map, vb, broadcast_cb=broadcast)
+
         self.height = 1
         self.parent_hash = "GENESIS"
 
@@ -39,14 +50,24 @@ class Simulator:
                     typ, payload = ev.payload
                     if typ == "BLOCK":
                         self.nodes[ev.dst].receive_block(payload)
+                    elif typ == "VOTE":
+                        self.nodes[ev.dst].receive_vote(payload)
+
                 self.network.step(handler)
                 if all(le.height >= self.height for n in self.nodes.values() for le in n.ledger if le.height == self.height):
                     break
                 if self.network.idle():
                     break
             # Advance parent hash if finalized
-            if self.height in self.vote_book.finalized:
-                self.parent_hash = self.vote_book.finalized[self.height]
+            # We need to check if *any* node finalized (or all, depending on termination condition)
+            # The loop above breaks when ALL nodes finalize.
+            # We can pick any node's ledger to get the finalized hash for the next block.
+            # Since they are consistent, any node works.
+            sample_node = self.nodes[self.node_ids[0]]
+            finalized_entry = next((le for le in sample_node.ledger if le.height == self.height), None)
+            if finalized_entry:
+                self.parent_hash = finalized_entry.block_hash
+            
             self.height += 1
 
     def collect_logs(self):
