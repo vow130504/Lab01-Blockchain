@@ -1,5 +1,5 @@
 import random, heapq, json
-from typing import Any, List, Dict, Tuple
+from typing import List, Dict, Tuple, Any
 from collections import defaultdict
 import copy
 
