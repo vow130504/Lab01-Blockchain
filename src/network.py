@@ -8,7 +8,7 @@ class Message:
         self.msg_id = msg_id
         self.kind = kind
         self.height = height
-        self.body = body  # dict
+        self.body = body  
 
 class NetworkEvent:
     def __init__(self, t, src, dst, msg: Message):
@@ -49,6 +49,9 @@ class UnreliableNetwork:
         self.block_duration = block_duration
         self.blocked_links: Dict[Tuple[str, str], int] = {}  # (src,dst) -> unblock_time
 
+        # NEW: track last height per link
+        self.last_height: Dict[Tuple[str,str], int] = {}
+
         # deterministic log
         self.log: List[str] = []
 
@@ -70,29 +73,36 @@ class UnreliableNetwork:
             self.send(src, dst, msg)
 
     def send(self, src, dst, msg: Message):
+        # record last height
+        self.last_height[(src, dst)] = msg.height
+
         # check if blocked
         unblock_time = self.blocked_links.get((src, dst), 0)
         if self.time < unblock_time:
             self.log_event(event="BLOCK_DROP", src=src, dst=dst,
                            msg_id=msg.msg_id,
-                           unblock_time=unblock_time)
+                           unblock_time=unblock_time,
+                           height=msg.height)
             return
 
         # rate limit
         self._refill_tokens()
         key = (src, dst)
         if self.tokens[key] < 1:
-            # block this peer temporarily
+            # block temporaily
             self.blocked_links[(src, dst)] = self.time + self.block_duration
             self.log_event(event="BLOCK", src=src, dst=dst,
                            msg_id=msg.msg_id,
-                           duration=self.block_duration)
+                           duration=self.block_duration,
+                           height=msg.height)
             return
         self.tokens[key] -= 1
 
         # drop
         if self.rng.random() < self.drop_prob:
-            self.log_event(event="DROP", src=src, dst=dst, msg_id=msg.msg_id)
+            self.log_event(event="DROP", src=src, dst=dst, 
+                           msg_id=msg.msg_id, 
+                           height=msg.height)
             return
 
         # schedule deliver
@@ -102,7 +112,9 @@ class UnreliableNetwork:
         self.seq += 1
         heapq.heappush(self.pq, (ev.t, self.seq, ev))
         self.log_event(event="SEND", src=src, dst=dst,
-                       msg_id=msg.msg_id, delay=delay)
+                       msg_id=msg.msg_id,
+                       height=msg.height, 
+                       delay=delay)
 
         # duplicate
         if self.rng.random() < self.dup_prob:
@@ -110,7 +122,8 @@ class UnreliableNetwork:
             self.seq += 1
             heapq.heappush(self.pq, (ev2.t, self.seq, ev2))
             self.log_event(event="DUP", src=src, dst=dst,
-                           msg_id=msg.msg_id)
+                           msg_id=msg.msg_id,
+                           height=msg.height)
 
     def step(self, handler):
         if not self.pq:
@@ -127,18 +140,20 @@ class UnreliableNetwork:
                 # assign deadline if not yet
                 if not hasattr(ev, "deadline"):
                     ev.deadline = self.time + 30  # MAX_WAIT_FOR_HEADER
-                # if deadline is expired -> DROP BODY
+
+                # expired
                 if self.time >= ev.deadline:
                     self.log_event(event="BODY_DROP_EXPIRED_HEADER",
                                    dst=ev.dst,
                                    msg_id=ev.msg.msg_id,
-                                   block_hash=block_hash)
+                                   block_hash=block_hash,
+                                   height=ev.msg.height)
                     return
-                # if not expired -> defer body
+
+                # defer body
                 new_t = self.time + 2
                 ev2 = NetworkEvent(new_t, ev.src, ev.dst, copy.deepcopy(ev.msg))
                 ev2.deadline = ev.deadline
-
                 self.seq += 1
                 heapq.heappush(self.pq, (new_t, self.seq, ev2))
 
@@ -146,8 +161,9 @@ class UnreliableNetwork:
                                dst=ev.dst,
                                msg_id=ev.msg.msg_id,
                                block_hash=block_hash,
+                               height=ev.msg.height,
                                next_try=new_t,
-                               deadline=ev2.deadline)
+                               deadline=ev2.deadline,)
                 return
 
         # deliver
@@ -166,9 +182,12 @@ class UnreliableNetwork:
         for (s,d), unblock_time in self.blocked_links.items():
             if self.time >= unblock_time:
                 to_unblock.append((s,d))
+
         for k in to_unblock:
             del self.blocked_links[k]
-            self.log_event(event="UNBLOCK", src=k[0], dst=k[1])
+            # NEW: use last known height per link
+            height_val = self.last_height.get(k, None)
+            self.log_event(event="UNBLOCK", src=k[0], dst=k[1], height=height_val)
 
         handler(ev.msg)
         return True
