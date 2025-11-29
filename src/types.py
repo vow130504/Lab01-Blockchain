@@ -6,9 +6,11 @@ class Transaction:
     sender: str
     key: str
     value: str
+    nonce: int  # unique sequence number to prevent replay
     signature: str  # hex
+
     def id(self) -> str:
-        return f"{self.sender}:{self.key}"
+        return f"{self.sender}:{self.key}:{self.nonce}"
 
 @dataclass
 class BlockHeader:

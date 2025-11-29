@@ -17,7 +17,7 @@ class TestState(unittest.TestCase):
         src.crypto.verify = lambda ctx, fields, pk, sig: True
 
     def test_apply_and_commit(self):
-        tx = make_tx(self.sender, self.key, self.value, self.sk, self.pk)
+        tx = make_tx(self.sender, self.key, self.value, 1, self.sk, self.pk)
         self.assertTrue(self.state.apply(tx))
         self.assertIn(self.key, self.state.kv)
         self.assertEqual(self.state.kv[self.key], self.value)
@@ -29,7 +29,7 @@ class TestState(unittest.TestCase):
         self.assertEqual(commit1, commit2)
 
     def test_ownership(self):
-        tx = make_tx(self.sender, "bob/balance", self.value, self.sk, self.pk)
+        tx = make_tx(self.sender, "bob/balance", self.value, 1, self.sk, self.pk)
         self.assertFalse(self.state.apply(tx))
 
 if __name__ == "__main__":

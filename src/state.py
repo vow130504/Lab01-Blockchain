@@ -11,11 +11,11 @@ class State:
     3. Executed tx_ids được track để prevent replay
     4. commit() tạo deterministic hash của state
     """
-    def __init__(self, parent_kv: Dict[str, str] = None):
+    def __init__(self, parent_kv: Dict[str, str] = None, executed_txs: Set[str] = None):
         # Inherit state from parent block (copy để không mutate parent)
         self.kv: Dict[str, str] = dict(parent_kv) if parent_kv else {}
-        # Track executed transactions để prevent replay attacks
-        self.executed_txs: Set[str] = set()
+        # Copy executed transactions set to preserve replay protection across chain
+        self.executed_txs: Set[str] = set(executed_txs) if executed_txs else set()
 
     def apply(self, tx: Transaction) -> bool:
         """Apply transaction to state với validation.
@@ -55,12 +55,12 @@ class State:
         """Get value from state, return empty string if not found."""
         return self.kv.get(key, "")
 
-def make_tx(sender: str, key: str, value: str, sk, pk) -> Transaction:
-    fields = (sender, key, value)
+def make_tx(sender: str, key: str, value: str, nonce: int, sk, pk) -> Transaction:
+    fields = (sender, key, value, nonce)
     sig = sign(CTX_TX, fields, sk).hex()
-    return Transaction(sender=sender, key=key, value=value, signature=sig)
+    return Transaction(sender=sender, key=key, value=value, nonce=nonce, signature=sig)
 
 def verify_tx(tx: Transaction, pk_map: Dict[str, bytes]) -> bool:
     if tx.sender not in pk_map: return False
-    fields = (tx.sender, tx.key, tx.value)
+    fields = (tx.sender, tx.key, tx.value, tx.nonce)
     return verify(CTX_TX, fields, pk_map[tx.sender], bytes.fromhex(tx.signature))
