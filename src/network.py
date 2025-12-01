@@ -239,7 +239,14 @@ class UnreliableNetwork:
             del self.blocked_links[k]
             # NEW: use last known height per link
             height_val = self.last_height.get(k, None)
-            self.log_event(event="UNBLOCK", src=k[0], dst=k[1], height=height_val)
+            log_event(
+                component="network",
+                event="UNBLOCK",
+                time=self.time,
+                src=k[0],
+                dst=k[1],
+                height=height_val,
+            )
 
         handler(ev.msg)
         return True
