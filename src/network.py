@@ -2,6 +2,7 @@ import random, heapq, json
 from typing import List, Dict, Tuple, Any
 from collections import defaultdict
 import copy
+from .logger import log_event
 
 class Message:
     def __init__(self, msg_id, kind, height, body):
@@ -16,6 +17,7 @@ class NetworkEvent:
         self.src = src
         self.dst = dst
         self.msg = msg
+        # i dunno what etype, height, payload are for but keeping it
         self.etype = etype
         self.height = height
         self.payload = payload
@@ -65,9 +67,9 @@ class UnreliableNetwork:
         # deterministic log
         self.log: List[str] = []
 
-    def log_event(self, **rec):
-        rec["time"] = self.time
-        self.log.append(json.dumps(rec, sort_keys=True))
+#    def log_event(self, **rec):
+#       rec["time"] = self.time
+#      self.log.append(json.dumps(rec, sort_keys=True))
 
     def _refill_tokens(self):
         delta = self.time - self.last_refill
@@ -89,10 +91,16 @@ class UnreliableNetwork:
         # check if blocked
         unblock_time = self.blocked_links.get((src, dst), 0)
         if self.time < unblock_time:
-            self.log_event(event="BLOCK_DROP", src=src, dst=dst,
-                           msg_id=msg.msg_id,
-                           unblock_time=unblock_time,
-                           height=msg.height)
+            log_event(
+                component="network",
+                event="BLOCK_DROP",
+                time=self.time,
+                src=src,
+                dst=dst,
+                msg_id=msg.msg_id,
+                unblock_time=unblock_time,
+                height=msg.height,
+            )
             return
 
         # rate limit
@@ -101,18 +109,30 @@ class UnreliableNetwork:
         if self.tokens[key] < 1:
             # block temporaily
             self.blocked_links[(src, dst)] = self.time + self.block_duration
-            self.log_event(event="BLOCK", src=src, dst=dst,
-                           msg_id=msg.msg_id,
-                           duration=self.block_duration,
-                           height=msg.height)
+            log_event(
+                component="network",
+                event="BLOCK",
+                time=self.time,
+                src=src,
+                dst=dst,
+                msg_id=msg.msg_id,
+                duration=self.block_duration,
+                height=msg.height,
+            )
             return
         self.tokens[key] -= 1
 
         # drop
         if self.rng.random() < self.drop_prob:
-            self.log_event(event="DROP", src=src, dst=dst, 
-                           msg_id=msg.msg_id, 
-                           height=msg.height)
+            log_event(
+                component="network",
+                event="DROP",
+                time=self.time,
+                src=src,
+                dst=dst,
+                msg_id=msg.msg_id,
+                height=msg.height,
+            )
             return
 
         # schedule deliver
@@ -121,19 +141,31 @@ class UnreliableNetwork:
         ev = NetworkEvent(self.time + delay, src, dst, msg_clone)
         self.seq += 1
         heapq.heappush(self.pq, (ev.t, self.seq, ev))
-        self.log_event(event="SEND", src=src, dst=dst,
-                       msg_id=msg.msg_id,
-                       height=msg.height, 
-                       delay=delay)
+        log_event(
+            component="network",
+            event="SEND",
+            time=self.time,
+            src=src,
+            dst=dst,
+            msg_id=msg.msg_id,
+            height=msg.height,
+            delay=delay,
+        )
 
         # duplicate
         if self.rng.random() < self.dup_prob:
             ev2 = NetworkEvent(ev.t + 1, src, dst, copy.deepcopy(msg_clone))
             self.seq += 1
             heapq.heappush(self.pq, (ev2.t, self.seq, ev2))
-            self.log_event(event="DUP", src=src, dst=dst,
-                           msg_id=msg.msg_id,
-                           height=msg.height)
+            log_event(
+                component="network",
+                event="DUP",
+                time=self.time,
+                src=src,
+                dst=dst,
+                msg_id=msg.msg_id,
+                height=msg.height,
+            )
 
     def step(self, handler):
         if not self.pq:
@@ -153,11 +185,15 @@ class UnreliableNetwork:
 
                 # expired
                 if self.time >= ev.deadline:
-                    self.log_event(event="BODY_DROP_EXPIRED_HEADER",
-                                   dst=ev.dst,
-                                   msg_id=ev.msg.msg_id,
-                                   block_hash=block_hash,
-                                   height=ev.msg.height)
+                    log_event(
+                        component="network",
+                        event="BODY_DROP_EXPIRED_HEADER",
+                        time=self.time,
+                        dst=ev.dst,
+                        msg_id=ev.msg.msg_id,
+                        block_hash=block_hash,
+                        height=ev.msg.height,
+                    )
                     return
 
                 # defer body
@@ -167,20 +203,30 @@ class UnreliableNetwork:
                 self.seq += 1
                 heapq.heappush(self.pq, (new_t, self.seq, ev2))
 
-                self.log_event(event="DEFER_BODY",
-                               dst=ev.dst,
-                               msg_id=ev.msg.msg_id,
-                               block_hash=block_hash,
-                               height=ev.msg.height,
-                               next_try=new_t,
-                               deadline=ev2.deadline,)
+                log_event(
+                    component="network",
+                    event="DEFER_BODY",
+                    time=self.time,
+                    dst=ev.dst,
+                    msg_id=ev.msg.msg_id,
+                    block_hash=block_hash,
+                    height=ev.msg.height,
+                    next_try=new_t,
+                    deadline=ev2.deadline,
+                )
                 return
 
         # deliver
-        self.log_event(event="DELIVER", src=ev.src, dst=ev.dst,
-                       msg_id=ev.msg.msg_id, kind=ev.msg.kind,
-                       height=ev.msg.height)
-
+        log_event(
+            component="network",
+            event="DELIVER",
+            time=self.time,
+            src=ev.src,
+            dst=ev.dst,
+            msg_id=ev.msg.msg_id,
+            kind=ev.msg.kind,
+            height=ev.msg.height,
+        )
         # mark accepted header
         if ev.msg.kind == "HEADER":
             block_hash = ev.msg.body.get("block_hash")

@@ -1,0 +1,92 @@
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V2"}
+{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V2"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V2"}
+{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V2"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V3"}
+{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V3"}
+{"block_hash": "hash123", "component": "consensus", "event": "FINALIZE", "height": 1, "validators": ["V1", "V2", "V3"]}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V1"}
+{"block_hash": "wronghash", "component": "consensus", "event": "VOTE_REJECT", "height": 1, "phase": "PREVOTE", "reason": "bad_signature", "validator": "V1"}
+{"block_hash": "wronghash", "component": "consensus", "event": "VOTE_REJECT", "height": 1, "phase": "PREVOTE", "reason": "unknown_validator", "validator": "Unknown"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "V1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "BLOCK_ACCEPT", "height": 1, "node_id": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "ISSUE_PREVOTE", "height": 1, "node_id": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V2"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PRECOMMIT", "validator": "V2"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V2"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V3"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PRECOMMIT", "validator": "V3"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V3"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "FINALIZE", "height": 1, "validators": ["V1", "V2", "V3"]}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "FINALIZE_TRIGGER", "height": 1, "node_id": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "FINALIZE_COMMIT", "height": 1, "node": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V2"}
+{"block_hash": "hash123", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V2"}
+{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V2"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V3"}
+{"block_hash": "hash123", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V3"}
+{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V3"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
+{"block_hash": "hash123", "component": "node", "event": "ISSUE_PRECOMMIT", "height": 1, "node_id": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "V1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "BLOCK_ACCEPT", "height": 1, "node_id": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "ISSUE_PREVOTE", "height": 1, "node_id": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V1"}
+{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V2"}
+{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V2"}
+{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V3"}
+{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V3"}
+{"block_hash": "hash123", "component": "consensus", "event": "FINALIZE", "height": 1, "validators": ["V1", "V2", "V3"]}
+{"block_hash": "hash456", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
+{"block_hash": "hash456", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
+{"block_hash": "hash456", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V2"}
+{"block_hash": "hash456", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V2"}
+{"block_hash": "hash456", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V3"}
+{"block_hash": "hash456", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V3"}
+{"block_hash": "hash456", "component": "consensus", "event": "FINALIZE_CONFLICT", "existing_block": "hash123", "height": 1, "validator": "V3"}
+{"block_hash": "hash0", "component": "ledger", "event": "ADD_BLOCK", "height": 0}
+{"block_hash": "hash0", "component": "ledger", "event": "ADD_BLOCK_DONE", "height": 0}
+{"block_hash": "hash1", "component": "ledger", "event": "ADD_BLOCK", "height": 1}
+{"block_hash": "hash1", "component": "ledger", "event": "ADD_BLOCK_DONE", "height": 1}
+{"block_hash": "hash0", "component": "ledger", "event": "GET_BLOCK_BY_HASH"}
+{"component": "ledger", "event": "GET_BLOCK_BY_HEIGHT", "height": 1}
+{"component": "ledger", "event": "LATEST_BLOCK", "has_blocks": true}
+{"component": "ledger", "event": "LEDGER_HEIGHT", "height": 1}
+{"component": "state", "event": "MAKE_TX", "key": "alice/balance", "nonce": 1, "sender": "alice", "value": "100"}
+{"component": "state", "event": "APPLY_TX_ATTEMPT", "key": "alice/balance", "sender": "alice", "tx_id": "alice:alice/balance:1", "value": "100"}
+{"component": "state", "event": "APPLY_TX_OK", "key": "alice/balance", "sender": "alice", "tx_id": "alice:alice/balance:1", "value": "100"}
+{"component": "state", "event": "COMMIT", "size": 1, "state_hash": "1d4b9da848111b3653782f18d24d17134f879f03aacdffd23508ed25e4700b53"}
+{"component": "state", "event": "APPLY_TX_ATTEMPT", "key": "alice/balance", "sender": "alice", "tx_id": "alice:alice/balance:1", "value": "100"}
+{"component": "state", "event": "APPLY_TX_REJECT", "key": "alice/balance", "reason": "replay", "sender": "alice", "tx_id": "alice:alice/balance:1"}
+{"component": "state", "event": "COMMIT", "size": 1, "state_hash": "1d4b9da848111b3653782f18d24d17134f879f03aacdffd23508ed25e4700b53"}
+{"component": "state", "event": "MAKE_TX", "key": "bob/balance", "nonce": 1, "sender": "alice", "value": "100"}
+{"component": "state", "event": "APPLY_TX_ATTEMPT", "key": "bob/balance", "sender": "alice", "tx_id": "alice:bob/balance:1", "value": "100"}
+{"component": "state", "event": "APPLY_TX_REJECT", "key": "bob/balance", "reason": "ownership", "sender": "alice", "tx_id": "alice:bob/balance:1"}

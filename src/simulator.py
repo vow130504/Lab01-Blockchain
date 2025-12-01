@@ -4,6 +4,7 @@ from .block import build_block
 from .consensus import VoteBook
 from .network import UnreliableNetwork
 from .node import Node
+from .logger import log_event
 
 class Simulator:
     def __init__(self, n_nodes: int, seed: int):
@@ -39,6 +40,15 @@ class Simulator:
         txs = []  # Empty tx batch; extend as needed
         block = build_block(self.parent_hash, self.height, txs, proposer, sk, self.pk_map)
         # Broadcast block (header/body simplified as one message)
+        log_event(
+            component="simulator",
+            event="PROPOSE_BLOCK",
+            height=self.height,
+            proposer=proposer,
+            parent_hash=self.parent_hash,
+            # tránh đụng attribute lạ, dùng getattr an toàn
+            block_hash=getattr(block, "hash", None),
+        )
         self.network.broadcast(proposer, self.height, ("BLOCK", block))
 
     def run_until(self, target_height: int):
@@ -67,8 +77,19 @@ class Simulator:
             finalized_entry = next((le for le in sample_node.ledger if le.height == self.height), None)
             if finalized_entry:
                 self.parent_hash = finalized_entry.block_hash
+                log_event(
+                    component="simulator",
+                    event="HEIGHT_FINALIZED",
+                    height=self.height,
+                    block_hash=finalized_entry.block_hash,
+                )
             
             self.height += 1
 
-    def collect_logs(self):
-        return "\n".join(self.network.log)
+    def collect_logs(self) -> str:
+        from pathlib import Path
+
+        log_file = Path("logs") / "run.log"
+        if not log_file.exists():
+            return ""
+        return log_file.read_text(encoding="utf-8")
