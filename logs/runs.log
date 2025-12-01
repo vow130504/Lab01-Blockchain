@@ -1,92 +1,592 @@
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V2"}
-{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V2"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V2"}
-{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V2"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V3"}
-{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V3"}
-{"block_hash": "hash123", "component": "consensus", "event": "FINALIZE", "height": 1, "validators": ["V1", "V2", "V3"]}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V1"}
-{"block_hash": "wronghash", "component": "consensus", "event": "VOTE_REJECT", "height": 1, "phase": "PREVOTE", "reason": "bad_signature", "validator": "V1"}
-{"block_hash": "wronghash", "component": "consensus", "event": "VOTE_REJECT", "height": 1, "phase": "PREVOTE", "reason": "unknown_validator", "validator": "Unknown"}
 {"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "V1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "simulator", "event": "PROPOSE_BLOCK", "height": 1, "parent_hash": "GENESIS", "proposer": "N1"}
+{"component": "network", "delay": 1, "dst": "N0", "event": "SEND", "height": 1, "msg_id": "blk_1", "src": "N1", "time": 0}
+{"component": "network", "delay": 1, "dst": "N2", "event": "SEND", "height": 1, "msg_id": "blk_1", "src": "N1", "time": 0}
+{"component": "network", "delay": 3, "dst": "N3", "event": "SEND", "height": 1, "msg_id": "blk_1", "src": "N1", "time": 0}
+{"component": "network", "delay": 0, "dst": "N4", "event": "SEND", "height": 1, "msg_id": "blk_1", "src": "N1", "time": 0}
+{"component": "network", "delay": 3, "dst": "N5", "event": "SEND", "height": 1, "msg_id": "blk_1", "src": "N1", "time": 0}
+{"component": "network", "dst": "N4", "event": "DELIVER", "height": 1, "kind": "BLOCK", "msg_id": "blk_1", "src": "N1", "time": 0}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N0"}
 {"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "BLOCK_ACCEPT", "height": 1, "node_id": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "ISSUE_PREVOTE", "height": 1, "node_id": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V2"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PRECOMMIT", "validator": "V2"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V2"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V3"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PRECOMMIT", "validator": "V3"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V3"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "FINALIZE", "height": 1, "validators": ["V1", "V2", "V3"]}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "FINALIZE_TRIGGER", "height": 1, "node_id": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "FINALIZE_COMMIT", "height": 1, "node": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V2"}
-{"block_hash": "hash123", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V2"}
-{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V2"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V3"}
-{"block_hash": "hash123", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V3"}
-{"block_hash": "hash123", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V3"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
-{"block_hash": "hash123", "component": "node", "event": "ISSUE_PRECOMMIT", "height": 1, "node_id": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_ACCEPT", "height": 1, "node_id": "N0"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "N0"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "ISSUE_PREVOTE", "height": 1, "node_id": "N0"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "VOTE_REJECT", "height": 1, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N0"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "VOTE_INVALID", "height": 1, "node_id": "N0", "phase": "PREVOTE", "validator": "N0"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N1"}
 {"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "V1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_ACCEPT", "height": 1, "node_id": "N1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "N1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "ISSUE_PREVOTE", "height": 1, "node_id": "N1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "VOTE_REJECT", "height": 1, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "VOTE_INVALID", "height": 1, "node_id": "N1", "phase": "PREVOTE", "validator": "N1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N2"}
 {"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "BLOCK_ACCEPT", "height": 1, "node_id": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "node", "event": "ISSUE_PREVOTE", "height": 1, "node_id": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "VOTE_ACCEPT", "height": 1, "phase": "PREVOTE", "validator": "V1"}
-{"block_hash": "94c5cebf56d60b50c9510345af82677040a94974abc4b2a057c534e705b4e49b", "component": "consensus", "event": "PREVOTE", "height": 1, "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V2"}
-{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V2"}
-{"block_hash": "hash123", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V3"}
-{"block_hash": "hash123", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V3"}
-{"block_hash": "hash123", "component": "consensus", "event": "FINALIZE", "height": 1, "validators": ["V1", "V2", "V3"]}
-{"block_hash": "hash456", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V1"}
-{"block_hash": "hash456", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V1"}
-{"block_hash": "hash456", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V2"}
-{"block_hash": "hash456", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V2"}
-{"block_hash": "hash456", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PRECOMMIT", "validator": "V3"}
-{"block_hash": "hash456", "component": "consensus", "event": "PRECOMMIT", "height": 1, "validator": "V3"}
-{"block_hash": "hash456", "component": "consensus", "event": "FINALIZE_CONFLICT", "existing_block": "hash123", "height": 1, "validator": "V3"}
-{"block_hash": "hash0", "component": "ledger", "event": "ADD_BLOCK", "height": 0}
-{"block_hash": "hash0", "component": "ledger", "event": "ADD_BLOCK_DONE", "height": 0}
-{"block_hash": "hash1", "component": "ledger", "event": "ADD_BLOCK", "height": 1}
-{"block_hash": "hash1", "component": "ledger", "event": "ADD_BLOCK_DONE", "height": 1}
-{"block_hash": "hash0", "component": "ledger", "event": "GET_BLOCK_BY_HASH"}
-{"component": "ledger", "event": "GET_BLOCK_BY_HEIGHT", "height": 1}
-{"component": "ledger", "event": "LATEST_BLOCK", "has_blocks": true}
-{"component": "ledger", "event": "LEDGER_HEIGHT", "height": 1}
-{"component": "state", "event": "MAKE_TX", "key": "alice/balance", "nonce": 1, "sender": "alice", "value": "100"}
-{"component": "state", "event": "APPLY_TX_ATTEMPT", "key": "alice/balance", "sender": "alice", "tx_id": "alice:alice/balance:1", "value": "100"}
-{"component": "state", "event": "APPLY_TX_OK", "key": "alice/balance", "sender": "alice", "tx_id": "alice:alice/balance:1", "value": "100"}
-{"component": "state", "event": "COMMIT", "size": 1, "state_hash": "1d4b9da848111b3653782f18d24d17134f879f03aacdffd23508ed25e4700b53"}
-{"component": "state", "event": "APPLY_TX_ATTEMPT", "key": "alice/balance", "sender": "alice", "tx_id": "alice:alice/balance:1", "value": "100"}
-{"component": "state", "event": "APPLY_TX_REJECT", "key": "alice/balance", "reason": "replay", "sender": "alice", "tx_id": "alice:alice/balance:1"}
-{"component": "state", "event": "COMMIT", "size": 1, "state_hash": "1d4b9da848111b3653782f18d24d17134f879f03aacdffd23508ed25e4700b53"}
-{"component": "state", "event": "MAKE_TX", "key": "bob/balance", "nonce": 1, "sender": "alice", "value": "100"}
-{"component": "state", "event": "APPLY_TX_ATTEMPT", "key": "bob/balance", "sender": "alice", "tx_id": "alice:bob/balance:1", "value": "100"}
-{"component": "state", "event": "APPLY_TX_REJECT", "key": "bob/balance", "reason": "ownership", "sender": "alice", "tx_id": "alice:bob/balance:1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_ACCEPT", "height": 1, "node_id": "N2"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "N2"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "ISSUE_PREVOTE", "height": 1, "node_id": "N2"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "VOTE_REJECT", "height": 1, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N2"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "VOTE_INVALID", "height": 1, "node_id": "N2", "phase": "PREVOTE", "validator": "N2"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_ACCEPT", "height": 1, "node_id": "N3"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "N3"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "ISSUE_PREVOTE", "height": 1, "node_id": "N3"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "VOTE_REJECT", "height": 1, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N3"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "VOTE_INVALID", "height": 1, "node_id": "N3", "phase": "PREVOTE", "validator": "N3"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_ACCEPT", "height": 1, "node_id": "N4"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "N4"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "ISSUE_PREVOTE", "height": 1, "node_id": "N4"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "VOTE_REJECT", "height": 1, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N4"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "VOTE_INVALID", "height": 1, "node_id": "N4", "phase": "PREVOTE", "validator": "N4"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_ACCEPT", "height": 1, "node_id": "N5"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "MAKE_VOTE", "height": 1, "phase": "PREVOTE", "validator": "N5"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "ISSUE_PREVOTE", "height": 1, "node_id": "N5"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "consensus", "event": "VOTE_REJECT", "height": 1, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N5"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "VOTE_INVALID", "height": 1, "node_id": "N5", "phase": "PREVOTE", "validator": "N5"}
+{"component": "network", "dst": "N0", "event": "DELIVER", "height": 1, "kind": "BLOCK", "msg_id": "blk_1", "src": "N1", "time": 1}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N0"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N2"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N3"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N4"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N5"}
+{"component": "network", "dst": "N2", "event": "DELIVER", "height": 1, "kind": "BLOCK", "msg_id": "blk_1", "src": "N1", "time": 1}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N0"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N2"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N3"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N4"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N5"}
+{"component": "network", "dst": "N3", "event": "DELIVER", "height": 1, "kind": "BLOCK", "msg_id": "blk_1", "src": "N1", "time": 3}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N0"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N2"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N3"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N4"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N5"}
+{"component": "network", "dst": "N5", "event": "DELIVER", "height": 1, "kind": "BLOCK", "msg_id": "blk_1", "src": "N1", "time": 3}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N0"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N1"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N2"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N3"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N4"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "RECEIVE_BLOCK", "height": 1, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "8e4da9ed4ee819794ab17155c172bcb6494c5732a5c955f2c7a6e92d3a1f20cb", "component": "node", "event": "BLOCK_DUPLICATE", "height": 1, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "simulator", "event": "PROPOSE_BLOCK", "height": 2, "parent_hash": "GENESIS", "proposer": "N2"}
+{"component": "network", "delay": 2, "dst": "N0", "event": "SEND", "height": 2, "msg_id": "blk_2", "src": "N2", "time": 3}
+{"component": "network", "delay": 1, "dst": "N1", "event": "SEND", "height": 2, "msg_id": "blk_2", "src": "N2", "time": 3}
+{"component": "network", "delay": 4, "dst": "N3", "event": "SEND", "height": 2, "msg_id": "blk_2", "src": "N2", "time": 3}
+{"component": "network", "delay": 4, "dst": "N4", "event": "SEND", "height": 2, "msg_id": "blk_2", "src": "N2", "time": 3}
+{"component": "network", "delay": 2, "dst": "N5", "event": "SEND", "height": 2, "msg_id": "blk_2", "src": "N2", "time": 3}
+{"component": "network", "dst": "N1", "event": "DELIVER", "height": 2, "kind": "BLOCK", "msg_id": "blk_2", "src": "N2", "time": 4}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_ACCEPT", "height": 2, "node_id": "N0"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "MAKE_VOTE", "height": 2, "phase": "PREVOTE", "validator": "N0"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "ISSUE_PREVOTE", "height": 2, "node_id": "N0"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "VOTE_REJECT", "height": 2, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N0"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "VOTE_INVALID", "height": 2, "node_id": "N0", "phase": "PREVOTE", "validator": "N0"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_ACCEPT", "height": 2, "node_id": "N1"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "MAKE_VOTE", "height": 2, "phase": "PREVOTE", "validator": "N1"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "ISSUE_PREVOTE", "height": 2, "node_id": "N1"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "VOTE_REJECT", "height": 2, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N1"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "VOTE_INVALID", "height": 2, "node_id": "N1", "phase": "PREVOTE", "validator": "N1"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_ACCEPT", "height": 2, "node_id": "N2"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "MAKE_VOTE", "height": 2, "phase": "PREVOTE", "validator": "N2"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "ISSUE_PREVOTE", "height": 2, "node_id": "N2"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "VOTE_REJECT", "height": 2, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N2"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "VOTE_INVALID", "height": 2, "node_id": "N2", "phase": "PREVOTE", "validator": "N2"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_ACCEPT", "height": 2, "node_id": "N3"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "MAKE_VOTE", "height": 2, "phase": "PREVOTE", "validator": "N3"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "ISSUE_PREVOTE", "height": 2, "node_id": "N3"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "VOTE_REJECT", "height": 2, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N3"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "VOTE_INVALID", "height": 2, "node_id": "N3", "phase": "PREVOTE", "validator": "N3"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_ACCEPT", "height": 2, "node_id": "N4"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "MAKE_VOTE", "height": 2, "phase": "PREVOTE", "validator": "N4"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "ISSUE_PREVOTE", "height": 2, "node_id": "N4"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "VOTE_REJECT", "height": 2, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N4"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "VOTE_INVALID", "height": 2, "node_id": "N4", "phase": "PREVOTE", "validator": "N4"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_ACCEPT", "height": 2, "node_id": "N5"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "MAKE_VOTE", "height": 2, "phase": "PREVOTE", "validator": "N5"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "ISSUE_PREVOTE", "height": 2, "node_id": "N5"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "consensus", "event": "VOTE_REJECT", "height": 2, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N5"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "VOTE_INVALID", "height": 2, "node_id": "N5", "phase": "PREVOTE", "validator": "N5"}
+{"component": "network", "dst": "N0", "event": "DELIVER", "height": 2, "kind": "BLOCK", "msg_id": "blk_2", "src": "N2", "time": 5}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N0"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N1"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N2"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N3"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N4"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N5"}
+{"component": "network", "dst": "N5", "event": "DELIVER", "height": 2, "kind": "BLOCK", "msg_id": "blk_2", "src": "N2", "time": 5}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N0"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N1"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N2"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N3"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N4"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N5"}
+{"component": "network", "dst": "N3", "event": "DELIVER", "height": 2, "kind": "BLOCK", "msg_id": "blk_2", "src": "N2", "time": 7}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N0"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N1"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N2"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N3"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N4"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N5"}
+{"component": "network", "dst": "N4", "event": "DELIVER", "height": 2, "kind": "BLOCK", "msg_id": "blk_2", "src": "N2", "time": 7}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N0"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N1"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N2"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N3"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N4"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "RECEIVE_BLOCK", "height": 2, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "d54ba75407afaffc6a0c9e85abe3df647fe334924b183316017758bd94aaf737", "component": "node", "event": "BLOCK_DUPLICATE", "height": 2, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "simulator", "event": "PROPOSE_BLOCK", "height": 3, "parent_hash": "GENESIS", "proposer": "N3"}
+{"component": "network", "delay": 0, "dst": "N0", "event": "SEND", "height": 3, "msg_id": "blk_3", "src": "N3", "time": 7}
+{"component": "network", "delay": 4, "dst": "N1", "event": "SEND", "height": 3, "msg_id": "blk_3", "src": "N3", "time": 7}
+{"component": "network", "delay": 1, "dst": "N2", "event": "SEND", "height": 3, "msg_id": "blk_3", "src": "N3", "time": 7}
+{"component": "network", "delay": 2, "dst": "N4", "event": "SEND", "height": 3, "msg_id": "blk_3", "src": "N3", "time": 7}
+{"component": "network", "delay": 5, "dst": "N5", "event": "SEND", "height": 3, "msg_id": "blk_3", "src": "N3", "time": 7}
+{"component": "network", "dst": "N0", "event": "DELIVER", "height": 3, "kind": "BLOCK", "msg_id": "blk_3", "src": "N3", "time": 7}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_ACCEPT", "height": 3, "node_id": "N0"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "MAKE_VOTE", "height": 3, "phase": "PREVOTE", "validator": "N0"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "ISSUE_PREVOTE", "height": 3, "node_id": "N0"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "VOTE_REJECT", "height": 3, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N0"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "VOTE_INVALID", "height": 3, "node_id": "N0", "phase": "PREVOTE", "validator": "N0"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_ACCEPT", "height": 3, "node_id": "N1"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "MAKE_VOTE", "height": 3, "phase": "PREVOTE", "validator": "N1"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "ISSUE_PREVOTE", "height": 3, "node_id": "N1"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "VOTE_REJECT", "height": 3, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N1"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "VOTE_INVALID", "height": 3, "node_id": "N1", "phase": "PREVOTE", "validator": "N1"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_ACCEPT", "height": 3, "node_id": "N2"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "MAKE_VOTE", "height": 3, "phase": "PREVOTE", "validator": "N2"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "ISSUE_PREVOTE", "height": 3, "node_id": "N2"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "VOTE_REJECT", "height": 3, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N2"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "VOTE_INVALID", "height": 3, "node_id": "N2", "phase": "PREVOTE", "validator": "N2"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_ACCEPT", "height": 3, "node_id": "N3"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "MAKE_VOTE", "height": 3, "phase": "PREVOTE", "validator": "N3"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "ISSUE_PREVOTE", "height": 3, "node_id": "N3"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "VOTE_REJECT", "height": 3, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N3"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "VOTE_INVALID", "height": 3, "node_id": "N3", "phase": "PREVOTE", "validator": "N3"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_ACCEPT", "height": 3, "node_id": "N4"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "MAKE_VOTE", "height": 3, "phase": "PREVOTE", "validator": "N4"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "ISSUE_PREVOTE", "height": 3, "node_id": "N4"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "VOTE_REJECT", "height": 3, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N4"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "VOTE_INVALID", "height": 3, "node_id": "N4", "phase": "PREVOTE", "validator": "N4"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_ACCEPT", "height": 3, "node_id": "N5"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "MAKE_VOTE", "height": 3, "phase": "PREVOTE", "validator": "N5"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "ISSUE_PREVOTE", "height": 3, "node_id": "N5"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "consensus", "event": "VOTE_REJECT", "height": 3, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N5"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "VOTE_INVALID", "height": 3, "node_id": "N5", "phase": "PREVOTE", "validator": "N5"}
+{"component": "network", "dst": "N2", "event": "DELIVER", "height": 3, "kind": "BLOCK", "msg_id": "blk_3", "src": "N3", "time": 8}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N0"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N1"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N2"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N3"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N4"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N5"}
+{"component": "network", "dst": "N4", "event": "DELIVER", "height": 3, "kind": "BLOCK", "msg_id": "blk_3", "src": "N3", "time": 9}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N0"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N1"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N2"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N3"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N4"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N5"}
+{"component": "network", "dst": "N1", "event": "DELIVER", "height": 3, "kind": "BLOCK", "msg_id": "blk_3", "src": "N3", "time": 11}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N0"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N1"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N2"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N3"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N4"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N5"}
+{"component": "network", "dst": "N5", "event": "DELIVER", "height": 3, "kind": "BLOCK", "msg_id": "blk_3", "src": "N3", "time": 12}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N0"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N1"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N2"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N3"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N4"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "RECEIVE_BLOCK", "height": 3, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "29043fee3996043c0a4242855cbed74e2cd1e3e66b235a24063482d5f76b65e1", "component": "node", "event": "BLOCK_DUPLICATE", "height": 3, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "simulator", "event": "PROPOSE_BLOCK", "height": 4, "parent_hash": "GENESIS", "proposer": "N4"}
+{"component": "network", "delay": 4, "dst": "N0", "event": "SEND", "height": 4, "msg_id": "blk_4", "src": "N4", "time": 12}
+{"component": "network", "delay": 4, "dst": "N1", "event": "SEND", "height": 4, "msg_id": "blk_4", "src": "N4", "time": 12}
+{"component": "network", "dst": "N2", "event": "DROP", "height": 4, "msg_id": "blk_4", "src": "N4", "time": 12}
+{"component": "network", "dst": "N3", "event": "DROP", "height": 4, "msg_id": "blk_4", "src": "N4", "time": 12}
+{"component": "network", "delay": 3, "dst": "N5", "event": "SEND", "height": 4, "msg_id": "blk_4", "src": "N4", "time": 12}
+{"component": "network", "dst": "N5", "event": "DELIVER", "height": 4, "kind": "BLOCK", "msg_id": "blk_4", "src": "N4", "time": 15}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_ACCEPT", "height": 4, "node_id": "N0"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "MAKE_VOTE", "height": 4, "phase": "PREVOTE", "validator": "N0"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "ISSUE_PREVOTE", "height": 4, "node_id": "N0"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "VOTE_REJECT", "height": 4, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N0"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "VOTE_INVALID", "height": 4, "node_id": "N0", "phase": "PREVOTE", "validator": "N0"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_ACCEPT", "height": 4, "node_id": "N1"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "MAKE_VOTE", "height": 4, "phase": "PREVOTE", "validator": "N1"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "ISSUE_PREVOTE", "height": 4, "node_id": "N1"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "VOTE_REJECT", "height": 4, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N1"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "VOTE_INVALID", "height": 4, "node_id": "N1", "phase": "PREVOTE", "validator": "N1"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_ACCEPT", "height": 4, "node_id": "N2"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "MAKE_VOTE", "height": 4, "phase": "PREVOTE", "validator": "N2"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "ISSUE_PREVOTE", "height": 4, "node_id": "N2"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "VOTE_REJECT", "height": 4, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N2"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "VOTE_INVALID", "height": 4, "node_id": "N2", "phase": "PREVOTE", "validator": "N2"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_ACCEPT", "height": 4, "node_id": "N3"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "MAKE_VOTE", "height": 4, "phase": "PREVOTE", "validator": "N3"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "ISSUE_PREVOTE", "height": 4, "node_id": "N3"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "VOTE_REJECT", "height": 4, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N3"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "VOTE_INVALID", "height": 4, "node_id": "N3", "phase": "PREVOTE", "validator": "N3"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_ACCEPT", "height": 4, "node_id": "N4"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "MAKE_VOTE", "height": 4, "phase": "PREVOTE", "validator": "N4"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "ISSUE_PREVOTE", "height": 4, "node_id": "N4"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "VOTE_REJECT", "height": 4, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N4"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "VOTE_INVALID", "height": 4, "node_id": "N4", "phase": "PREVOTE", "validator": "N4"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_ACCEPT", "height": 4, "node_id": "N5"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "MAKE_VOTE", "height": 4, "phase": "PREVOTE", "validator": "N5"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "ISSUE_PREVOTE", "height": 4, "node_id": "N5"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "consensus", "event": "VOTE_REJECT", "height": 4, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N5"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "VOTE_INVALID", "height": 4, "node_id": "N5", "phase": "PREVOTE", "validator": "N5"}
+{"component": "network", "dst": "N0", "event": "DELIVER", "height": 4, "kind": "BLOCK", "msg_id": "blk_4", "src": "N4", "time": 16}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N0"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N1"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N2"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N3"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N4"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N5"}
+{"component": "network", "dst": "N1", "event": "DELIVER", "height": 4, "kind": "BLOCK", "msg_id": "blk_4", "src": "N4", "time": 16}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N0"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N1"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N2"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N3"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N4"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "RECEIVE_BLOCK", "height": 4, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "e2f456af5ff39e41ed6d1614858b8a7486aeb8bc01fd43f4b2b532086ff1d7c7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 4, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "simulator", "event": "PROPOSE_BLOCK", "height": 5, "parent_hash": "GENESIS", "proposer": "N5"}
+{"component": "network", "delay": 0, "dst": "N0", "event": "SEND", "height": 5, "msg_id": "blk_5", "src": "N5", "time": 16}
+{"component": "network", "delay": 3, "dst": "N1", "event": "SEND", "height": 5, "msg_id": "blk_5", "src": "N5", "time": 16}
+{"component": "network", "delay": 1, "dst": "N2", "event": "SEND", "height": 5, "msg_id": "blk_5", "src": "N5", "time": 16}
+{"component": "network", "delay": 5, "dst": "N3", "event": "SEND", "height": 5, "msg_id": "blk_5", "src": "N5", "time": 16}
+{"component": "network", "delay": 3, "dst": "N4", "event": "SEND", "height": 5, "msg_id": "blk_5", "src": "N5", "time": 16}
+{"component": "network", "dst": "N0", "event": "DELIVER", "height": 5, "kind": "BLOCK", "msg_id": "blk_5", "src": "N5", "time": 16}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_ACCEPT", "height": 5, "node_id": "N0"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "MAKE_VOTE", "height": 5, "phase": "PREVOTE", "validator": "N0"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "ISSUE_PREVOTE", "height": 5, "node_id": "N0"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "VOTE_REJECT", "height": 5, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N0"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "VOTE_INVALID", "height": 5, "node_id": "N0", "phase": "PREVOTE", "validator": "N0"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_ACCEPT", "height": 5, "node_id": "N1"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "MAKE_VOTE", "height": 5, "phase": "PREVOTE", "validator": "N1"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "ISSUE_PREVOTE", "height": 5, "node_id": "N1"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "VOTE_REJECT", "height": 5, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N1"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "VOTE_INVALID", "height": 5, "node_id": "N1", "phase": "PREVOTE", "validator": "N1"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_ACCEPT", "height": 5, "node_id": "N2"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "MAKE_VOTE", "height": 5, "phase": "PREVOTE", "validator": "N2"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "ISSUE_PREVOTE", "height": 5, "node_id": "N2"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "VOTE_REJECT", "height": 5, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N2"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "VOTE_INVALID", "height": 5, "node_id": "N2", "phase": "PREVOTE", "validator": "N2"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_ACCEPT", "height": 5, "node_id": "N3"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "MAKE_VOTE", "height": 5, "phase": "PREVOTE", "validator": "N3"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "ISSUE_PREVOTE", "height": 5, "node_id": "N3"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "VOTE_REJECT", "height": 5, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N3"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "VOTE_INVALID", "height": 5, "node_id": "N3", "phase": "PREVOTE", "validator": "N3"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_ACCEPT", "height": 5, "node_id": "N4"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "MAKE_VOTE", "height": 5, "phase": "PREVOTE", "validator": "N4"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "ISSUE_PREVOTE", "height": 5, "node_id": "N4"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "VOTE_REJECT", "height": 5, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N4"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "VOTE_INVALID", "height": 5, "node_id": "N4", "phase": "PREVOTE", "validator": "N4"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_ACCEPT", "height": 5, "node_id": "N5"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "MAKE_VOTE", "height": 5, "phase": "PREVOTE", "validator": "N5"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "ISSUE_PREVOTE", "height": 5, "node_id": "N5"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "consensus", "event": "VOTE_REJECT", "height": 5, "phase": "PREVOTE", "reason": "bad_signature", "validator": "N5"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "VOTE_INVALID", "height": 5, "node_id": "N5", "phase": "PREVOTE", "validator": "N5"}
+{"component": "network", "dst": "N2", "event": "DELIVER", "height": 5, "kind": "BLOCK", "msg_id": "blk_5", "src": "N5", "time": 17}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N0"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N1"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N2"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N3"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N4"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N5"}
+{"component": "network", "dst": "N1", "event": "DELIVER", "height": 5, "kind": "BLOCK", "msg_id": "blk_5", "src": "N5", "time": 19}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N0"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N1"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N2"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N3"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N4"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N5"}
+{"component": "network", "dst": "N4", "event": "DELIVER", "height": 5, "kind": "BLOCK", "msg_id": "blk_5", "src": "N5", "time": 19}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N0"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N1"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N2"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N3"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N4"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N5"}
+{"component": "network", "dst": "N3", "event": "DELIVER", "height": 5, "kind": "BLOCK", "msg_id": "blk_5", "src": "N5", "time": 21}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N0"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N0"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N1"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N1"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N2"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N2"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N3"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N3"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N4"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N4"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "RECEIVE_BLOCK", "height": 5, "node_id": "N5"}
+{"component": "state", "event": "COMMIT", "size": 0, "state_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+{"block_hash": "92cfc7c39cc02c2f74bfce9680912c5c1080e0ed58a164f516117d9d772a98d7", "component": "node", "event": "BLOCK_DUPLICATE", "height": 5, "node_id": "N5"}

@@ -17,10 +17,6 @@ class NetworkEvent:
         self.src = src
         self.dst = dst
         self.msg = msg
-        # i dunno what etype, height, payload are for but keeping it
-        self.etype = etype
-        self.height = height
-        self.payload = payload
     
     def __lt__(self, other):
         """Enable comparison for heapq - compare by time, then by src/dst for determinism"""

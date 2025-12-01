@@ -1,10 +1,12 @@
 from typing import List, Dict
+
 from .crypto import generate_keypair
 from .block import build_block
 from .consensus import VoteBook
-from .network import UnreliableNetwork
+from .network import UnreliableNetwork, Message
 from .node import Node
 from .logger import log_event
+
 
 class Simulator:
     def __init__(self, n_nodes: int, seed: int):
@@ -13,23 +15,44 @@ class Simulator:
         self.validator_ids = self.node_ids  # all validators for simplicity
         self.pk_map: Dict[str, bytes] = {}
         self.signers = {}
+
+        # Tạo keypair cho từng validator
         for vid in self.validator_ids:
             kp = generate_keypair()
             self.pk_map[vid] = kp.pk
             self.signers[vid] = kp.sk
-        # self.vote_book = VoteBook(self.validator_ids) # REMOVED: Shared vote book
+
+        # Mạng không tin cậy
         self.network = UnreliableNetwork(self.node_ids, seed)
-        
-        # Create nodes with individual VoteBooks and broadcast callback
+
+        # Tạo Node + VoteBook riêng cho từng node
         self.nodes: Dict[str, Node] = {}
+
+        # Hàm tạo broadcast callback cho từng node
+        def make_broadcast(src_id: str):
+            def broadcast(height: int, payload):
+                typ, obj = payload
+
+                if typ == "VOTE":
+                    msg = Message(
+                        msg_id=f"vote_{src_id}_{height}_{obj.block_hash}",
+                        kind="VOTE",
+                        height=height,
+                        body={"vote": obj},
+                    )
+                    self.network.broadcast(src_id, msg)
+                # nếu sau này có loại khác thì thêm ở đây
+            return broadcast
+
         for nid in self.node_ids:
             vb = VoteBook(self.validator_ids)
-            # Define a closure for broadcast that captures self.network
-            # We need to be careful with scope, but here it's fine as self.network is stable
-            def broadcast(h, p):
-                self.network.broadcast(nid, h, p)
-            
-            self.nodes[nid] = Node(nid, self.validator_ids, self.pk_map, vb, broadcast_cb=broadcast)
+            self.nodes[nid] = Node(
+                nid,
+                self.validator_ids,
+                self.pk_map,
+                vb,
+                broadcast_cb=make_broadcast(nid),
+            )
 
         self.height = 1
         self.parent_hash = "GENESIS"
@@ -38,43 +61,66 @@ class Simulator:
         proposer = self.node_ids[self.height % len(self.node_ids)]
         sk = self.signers[proposer]
         txs = []  # Empty tx batch; extend as needed
+
         block = build_block(self.parent_hash, self.height, txs, proposer, sk, self.pk_map)
-        # Broadcast block (header/body simplified as one message)
+
+        # Ghi log đề xuất block
         log_event(
             component="simulator",
             event="PROPOSE_BLOCK",
             height=self.height,
             proposer=proposer,
             parent_hash=self.parent_hash,
-            # tránh đụng attribute lạ, dùng getattr an toàn
             block_hash=getattr(block, "hash", None),
         )
-        self.network.broadcast(proposer, self.height, ("BLOCK", block))
+
+        # Wrap block vào Message cho network
+        msg = Message(
+            msg_id=f"blk_{self.height}",
+            kind="BLOCK",
+            height=self.height,
+            body={"block": block},
+        )
+
+        # Gửi qua UnreliableNetwork - API mới: (src, msg)
+        self.network.broadcast(proposer, msg)
 
     def run_until(self, target_height: int):
         while self.height <= target_height:
             self.propose()
+
             # Process events until block finalized
             while True:
-                def handler(ev):
-                    typ, payload = ev.payload
-                    if typ == "BLOCK":
-                        self.nodes[ev.dst].receive_block(payload)
-                    elif typ == "VOTE":
-                        self.nodes[ev.dst].receive_vote(payload)
+                # Đây chính là handler bạn hỏi – nó nằm bên trong run_until
+                def handler(msg: Message):
+                    if msg.kind == "BLOCK":
+                        block = msg.body["block"]
+                        for node in self.nodes.values():
+                            node.receive_block(block)
+                    elif msg.kind == "VOTE":
+                        vote = msg.body["vote"]
+                        for node in self.nodes.values():
+                            node.receive_vote(vote)
 
+                # network.step sẽ gọi handler(msg)
                 self.network.step(handler)
-                if all(le.height >= self.height for n in self.nodes.values() for le in n.ledger if le.height == self.height):
+
+                # Điều kiện dừng: tất cả node đã finalize height hiện tại
+                if all(
+                    any(le.height == self.height for le in n.ledger)
+                    for n in self.nodes.values()
+                ):
                     break
+
                 if self.network.idle():
                     break
-            # Advance parent hash if finalized
-            # We need to check if *any* node finalized (or all, depending on termination condition)
-            # The loop above breaks when ALL nodes finalize.
-            # We can pick any node's ledger to get the finalized hash for the next block.
-            # Since they are consistent, any node works.
+
+            # Lấy block_hash đã finalize để làm parent cho height tiếp theo
             sample_node = self.nodes[self.node_ids[0]]
-            finalized_entry = next((le for le in sample_node.ledger if le.height == self.height), None)
+            finalized_entry = next(
+                (le for le in sample_node.ledger if le.height == self.height),
+                None,
+            )
             if finalized_entry:
                 self.parent_hash = finalized_entry.block_hash
                 log_event(
@@ -83,13 +129,8 @@ class Simulator:
                     height=self.height,
                     block_hash=finalized_entry.block_hash,
                 )
-            
+
             self.height += 1
 
     def collect_logs(self) -> str:
-        from pathlib import Path
-
-        log_file = Path("logs") / "run.log"
-        if not log_file.exists():
-            return ""
-        return log_file.read_text(encoding="utf-8")
+        return "\n".join(self.network.log)
