@@ -7,10 +7,10 @@ from .state import State, verify_tx
 from .logger import log_event
 
 class Node:
-    def __init__(self, nid: str, validators: List[str], pk_map: Dict[str, bytes], vote_book: VoteBook, broadcast_cb=None):
+    def __init__(self, nid: str, validators: List[str], pk_map: Dict[str, bytes], vote_book: VoteBook, keypair=None, broadcast_cb=None):
         self.id = nid
         self.validators = validators
-        self.keypair = generate_keypair()  # separate participant key (simplified)
+        self.keypair = keypair if keypair else generate_keypair()
         self.pk_map = pk_map
         self.vote_book = vote_book
         self.blocks_by_height: Dict[int, Block] = {}

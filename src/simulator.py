@@ -1,6 +1,6 @@
 from typing import List, Dict
 
-from .crypto import generate_keypair
+from .crypto import generate_keypair, KeyPair
 from .block import build_block
 from .consensus import VoteBook
 from .network import UnreliableNetwork, Message
@@ -51,6 +51,7 @@ class Simulator:
                 self.validator_ids,
                 self.pk_map,
                 vb,
+                keypair=KeyPair(self.signers[nid], self.pk_map[nid]),
                 broadcast_cb=make_broadcast(nid),
             )
 
