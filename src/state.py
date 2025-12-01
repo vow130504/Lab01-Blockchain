@@ -1,27 +1,157 @@
-from typing import Dict
+from typing import Dict, Set
 from .crypto import state_hash, CTX_TX, sign, verify, encode_fields
 from .types import Transaction
+from .logger import log_event
 
 class State:
-    def __init__(self):
-        self.kv: Dict[str, str] = {}
+    """Deterministic key-value state with transaction replay protection.
+    
+    Workflow:
+    1. State được khởi tạo từ parent state (hoặc empty cho genesis)
+    2. Transactions được apply tuần tự (verify signature → check ownership → update kv)
+    3. Executed tx_ids được track để prevent replay
+    4. commit() tạo deterministic hash của state
+    """
+    def __init__(self, parent_kv: Dict[str, str] = None, executed_txs: Set[str] = None):
+        # Inherit state from parent block (copy để không mutate parent)
+        self.kv: Dict[str, str] = dict(parent_kv) if parent_kv else {}
+        # Copy executed transactions set to preserve replay protection across chain
+        self.executed_txs: Set[str] = set(executed_txs) if executed_txs else set()
 
     def apply(self, tx: Transaction) -> bool:
+        """Apply transaction to state với validation.
+        
+        Returns True nếu tx được apply thành công, False nếu invalid.
+        
+        Checks:
+        1. Replay protection: tx đã được execute chưa?
+        2. Ownership: sender chỉ có thể modify sender/* keys
+        """
+        tx_id = tx.id()
+        log_event(
+            component="state",
+            event="APPLY_TX_ATTEMPT",
+            tx_id=tx_id,
+            sender=tx.sender,
+            key=tx.key,
+            value=tx.value,
+        )
+        
+        # Replay protection: prevent executing same tx twice
+        if tx_id in self.executed_txs:
+            log_event(
+                component="state",
+                event="APPLY_TX_REJECT",
+                reason="replay",
+                tx_id=tx_id,
+                sender=tx.sender,
+                key=tx.key,
+            )
+            return False
+        
         # Ownership: sender can only modify sender/*
         if not tx.key.startswith(tx.sender + "/"):
+            log_event(
+                component="state",
+                event="APPLY_TX_REJECT",
+                reason="ownership",
+                tx_id=tx_id,
+                sender=tx.sender,
+                key=tx.key,
+            )
             return False
+        
+        # Apply transaction
         self.kv[tx.key] = tx.value
+        self.executed_txs.add(tx_id)
+        log_event(
+            component="state",
+            event="APPLY_TX_OK",
+            tx_id=tx_id,
+            sender=tx.sender,
+            key=tx.key,
+            value=tx.value,
+        )
         return True
 
     def commit(self) -> str:
-        return state_hash(self.kv)
+        """Generate deterministic commitment hash of current state."""
+        h = state_hash(self.kv)
+        log_event(
+            component="state",
+            event="COMMIT",
+            state_hash=h,
+            size=len(self.kv),
+        )
+        return h
+    
+    def copy(self) -> 'State':
+        """Create a deep copy of state for speculation/testing."""
+        new_state = State(self.kv)
+        new_state.executed_txs = set(self.executed_txs)
+        log_event(
+            component="state",
+            event="COPY_STATE",
+            size=len(self.kv),
+            executed_txs=len(self.executed_txs),
+        )
+        return new_state
+    
+    def get(self, key: str) -> str:
+        """Get value from state, return empty string if not found."""
+        log_event(
+            component="state",
+            event="GET_KEY",
+            key=key,
+            found=(key in self.kv),
+        )
+        return self.kv.get(key, "")
 
-def make_tx(sender: str, key: str, value: str, sk, pk) -> Transaction:
-    fields = (sender, key, value)
+def make_tx(sender: str, key: str, value: str, nonce: int, sk, pk) -> Transaction:
+    fields = (sender, key, value, nonce)
     sig = sign(CTX_TX, fields, sk).hex()
-    return Transaction(sender=sender, key=key, value=value, signature=sig)
+    log_event(
+        component="state",
+        event="MAKE_TX",
+        sender=sender,
+        key=key,
+        value=value,
+        nonce=nonce,
+    )
+    return Transaction(sender=sender, key=key, value=value, nonce=nonce, signature=sig)
 
 def verify_tx(tx: Transaction, pk_map: Dict[str, bytes]) -> bool:
-    if tx.sender not in pk_map: return False
-    fields = (tx.sender, tx.key, tx.value)
-    return verify(CTX_TX, fields, pk_map[tx.sender], bytes.fromhex(tx.signature))
+    if tx.sender not in pk_map: 
+        log_event(
+            component="state",
+            event="VERIFY_TX_REJECT",
+            reason="unknown_sender",
+            sender=tx.sender,
+            key=tx.key,
+            value=tx.value,
+            nonce=tx.nonce,
+        )
+        return False
+    fields = (tx.sender, tx.key, tx.value, tx.nonce)
+    ok = verify(CTX_TX, fields, pk_map[tx.sender], bytes.fromhex(tx.signature))
+    if not ok:
+        log_event(
+            component="state",
+            event="VERIFY_TX_REJECT",
+            reason="bad_signature",
+            sender=tx.sender,
+            key=tx.key,
+            value=tx.value,
+            nonce=tx.nonce,
+        )
+    else:
+        log_event(
+            component="state",
+            event="VERIFY_TX_OK",
+            sender=tx.sender,
+            key=tx.key,
+            value=tx.value,
+            nonce=tx.nonce,
+        )
+
+    return ok

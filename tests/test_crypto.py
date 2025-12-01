@@ -24,3 +24,24 @@ def test_deterministic_encoding():
     # sau này không ai sửa code làm thay đổi logic hashing.
     fields = ("test", 123)
     # assert sha256(encode_fields(fields)).hex() == "hash_mong_doi_o_day"
+
+def test_signature_reject_tampered_message():
+    """Ký đúng nhưng sửa nội dung → verify phải thất bại."""
+    kp = generate_keypair()
+    fields = ("alice", "bob", "10")
+    sig = sign(CTX_TX, fields, kp.sk)
+
+    # Sửa nội dung (value khác)
+    tampered_fields = ("alice", "bob", "100")
+    assert not verify(CTX_TX, tampered_fields, kp.pk, sig)
+
+
+def test_signature_reject_wrong_public_key():
+    """Ký bằng sk1 nhưng verify bằng pk2 → phải thất bại."""
+    kp1 = generate_keypair()
+    kp2 = generate_keypair()
+    fields = ("alice", "bob", "10")
+    sig = sign(CTX_TX, fields, kp1.sk)
+
+    # Verify bằng public key của người khác
+    assert not verify(CTX_TX, fields, kp2.pk, sig)
