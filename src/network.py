@@ -16,6 +16,16 @@ class NetworkEvent:
         self.src = src
         self.dst = dst
         self.msg = msg
+        self.etype = etype
+        self.height = height
+        self.payload = payload
+    
+    def __lt__(self, other):
+        """Enable comparison for heapq - compare by time, then by src/dst for determinism"""
+        if self.t != other.t:
+            return self.t < other.t
+        # Secondary comparison for determinism when times are equal
+        return (self.src, self.dst) < (other.src, other.dst)
 
 class UnreliableNetwork:
     def __init__(self, nodes: List[str], seed: int,

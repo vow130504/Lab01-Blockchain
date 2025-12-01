@@ -3,6 +3,7 @@ from .types import Block, Vote, LedgerEntry
 from .block import verify_block
 from .consensus import VoteBook, make_vote, verify_vote
 from .crypto import generate_keypair
+from .state import State, verify_tx
 
 class Node:
     def __init__(self, nid: str, validators: List[str], pk_map: Dict[str, bytes], vote_book: VoteBook, broadcast_cb=None):
@@ -14,9 +15,12 @@ class Node:
         self.blocks_by_height: Dict[int, Block] = {}
         self.ledger: List[LedgerEntry] = []
         self.broadcast_cb = broadcast_cb
+        # Local application state maintained by this node
+        self.state = State()
 
     def receive_block(self, block: Block):
-        if not verify_block(block, self.pk_map):
+        # Verify block signature and state commitment using local parent state
+        if not verify_block(block, self.pk_map, parent_state=self.state):
             return
         h = block.header.height
         if h in self.blocks_by_height: return
@@ -60,4 +64,9 @@ class Node:
         block = self.blocks_by_height.get(height)
         if not block or block.hash != block_hash: return
         if any(le.height == height for le in self.ledger): return
+        # Apply block transactions to local state (only valid txs)
+        for tx in block.txs:
+            if verify_tx(tx, self.pk_map):
+                self.state.apply(tx)
+        # Append ledger entry after state updated
         self.ledger.append(LedgerEntry(height=height, block_hash=block_hash, state_commit=block.header.state_commit))

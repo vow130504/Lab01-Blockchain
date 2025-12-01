@@ -6,6 +6,6 @@ from src.state import make_tx
 def test_block_build_verify():
     kp = generate_keypair()
     pk_map = {"P": kp.pk}
-    tx = make_tx("P", "P/data", "v", kp.sk, kp.pk)
+    tx = make_tx("P", "P/data", "v", 1, kp.sk, kp.pk)
     blk = build_block("GENESIS", 1, [tx], "P", kp.sk, pk_map)
     assert verify_block(blk, pk_map)
